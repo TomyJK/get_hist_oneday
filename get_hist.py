@@ -42,6 +42,7 @@ df_out = pd.DataFrame(data_list)
 df_out = df_out[["symbol", "date", "open", "high", "low", "close", "volume"]]
 df_out["date"] = pd.to_datetime(df_out["date"]).dt.tz_localize(None)
 df_out["diff%"] = ((df_out["close"] - df_out["open"]) / df_out["open"]) * 100
+df_out["diff%"] = df_out["diff%"].round(2)
 
 df_out.to_excel(output_file, index=False)
 print(f"Saved OHLCV to {output_file}")
